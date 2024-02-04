@@ -1,20 +1,13 @@
 package com.example.demo.bootstrap;
 
+import com.example.demo.domain.InhousePart;
 import com.example.demo.domain.OutsourcedPart;
-import com.example.demo.domain.Part;
 import com.example.demo.domain.Product;
 import com.example.demo.repositories.OutsourcedPartRepository;
 import com.example.demo.repositories.PartRepository;
 import com.example.demo.repositories.ProductRepository;
-import com.example.demo.service.OutsourcedPartService;
-import com.example.demo.service.OutsourcedPartServiceImpl;
-import com.example.demo.service.ProductService;
-import com.example.demo.service.ProductServiceImpl;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
-
-import java.util.List;
-import java.util.Optional;
 
 /**
  *
@@ -38,40 +31,69 @@ public class BootStrapData implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-
-       /*
-        OutsourcedPart o= new OutsourcedPart();
-        o.setCompanyName("Western Governors University");
-        o.setName("out test");
-        o.setInv(5);
-        o.setPrice(20.0);
-        o.setId(100L);
-        outsourcedPartRepository.save(o);
-        OutsourcedPart thePart=null;
-        List<OutsourcedPart> outsourcedParts=(List<OutsourcedPart>) outsourcedPartRepository.findAll();
-        for(OutsourcedPart part:outsourcedParts){
-            if(part.getName().equals("out test"))thePart=part;
+        //get count of items in inventory
+        long par = partRepository.count();
+        long pro = productRepository.count();
+        //check to make sure inventory is empty before uploading sample database.
+        if (par == 0 & pro == 0)
+        {
+            //make outsourced parts and update each field
+            OutsourcedPart o1 = new OutsourcedPart();
+            o1.setCompanyName("Colortown");
+            o1.setName("Food dye");
+            o1.setInv(5);
+            o1.setPrice(5.0);
+            o1.setId(100L);
+            //save object to repo
+            outsourcedPartRepository.save(o1);
+            OutsourcedPart o2 = new OutsourcedPart();
+            o2.setCompanyName("Hershey");
+            o2.setName("Chocolate");
+            o2.setInv(4);
+            o2.setPrice(15.0);
+            o2.setId(200L);
+            outsourcedPartRepository.save(o2);
+            InhousePart i1 = new InhousePart();
+            i1.setPartId(72);
+            i1.setName("Sugar");
+            i1.setInv(3);
+            i1.setPrice(7.5);
+            i1.setId(300L);
+            partRepository.save(i1);
+            InhousePart i2 = new InhousePart();
+            i2.setPartId(32);
+            i2.setName("Eggs");
+            i2.setInv(2);
+            i2.setPrice(12.5);
+            i2.setId(400L);
+            partRepository.save(i2);
+            InhousePart i3 = new InhousePart();
+            i3.setPartId(43);
+            i3.setName("Flour");
+            i3.setInv(1);
+            i3.setPrice(2.0);
+            i3.setId(500L);
+            partRepository.save(i3);
+            //create products with info in parameters
+            Product sugar = new Product("Sugar",20.0,11);
+            Product choco = new Product("Chocolate Chip",30.0,6);
+            Product redvelv = new Product("Red Velvet",10.0,8);
+            Product christ = new Product("Christmas",10.0,7);
+            Product snick = new Product("Snickerdoodle",15.0,14);
+            //save products
+            productRepository.save(redvelv);
+            productRepository.save(sugar);
+            productRepository.save(choco);
+            productRepository.save(christ);
+            productRepository.save(snick);
         }
 
-        System.out.println(thePart.getCompanyName());
-        */
-        List<OutsourcedPart> outsourcedParts=(List<OutsourcedPart>) outsourcedPartRepository.findAll();
-        for(OutsourcedPart part:outsourcedParts){
-            System.out.println(part.getName()+" "+part.getCompanyName());
-        }
 
-        /*
-        Product bicycle= new Product("bicycle",100.0,15);
-        Product unicycle= new Product("unicycle",100.0,15);
-        productRepository.save(bicycle);
-        productRepository.save(unicycle);
-        */
 
-        System.out.println("Started in Bootstrap");
-        System.out.println("Number of Products"+productRepository.count());
-        System.out.println(productRepository.findAll());
-        System.out.println("Number of Parts"+partRepository.count());
-        System.out.println(partRepository.findAll());
+
+
+
+
 
     }
 }

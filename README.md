@@ -33,7 +33,12 @@ line 7-13- mapping about template to /about request
 Mainscreen.html: 
 line 21- Added an about us button to the top of the main screen
 ### E.  Add a sample inventory appropriate for your chosen store to the application. You should have five parts and five products in your sample inventory and should not overwrite existing data in the database.
-
+line 35-36 get count of items in inventory
+line 37- check to make sure inventory is empty before uploading sample database
+line 40-46- make outsourced parts and update each field
+line 41-76- input part data and info
+line 77-82- create products with info in parameters
+line 84-88- save products
 
 ### F.  Add a “Buy Now” button to your product list. Your “Buy Now” button must meet each of the following parameters:
 
