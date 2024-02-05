@@ -32,7 +32,9 @@ line 7-13- mapping about template to /about request
 
 Mainscreen.html: 
 line 21- Added an about us button to the top of the main screen
+
 ### E.  Add a sample inventory appropriate for your chosen store to the application. You should have five parts and five products in your sample inventory and should not overwrite existing data in the database.
+bootstrapdata.java
 line 35-36 get count of items in inventory
 line 37- check to make sure inventory is empty before uploading sample database
 line 40-46- make outsourced parts and update each field
@@ -41,6 +43,25 @@ line 77-82- create products with info in parameters
 line 84-88- save products
 
 ### F.  Add a “Buy Now” button to your product list. Your “Buy Now” button must meet each of the following parameters:
+fail.html
+line 1-12- html file template to display the buy was a fail
+suc.html
+line 1-12- html file template to display the buy was a success
+productservice.java
+line 20- new method declaration in interface for decrement
+productserviceimpl.java 
+line 69-80- method implementation of decrement  
+line 71- find product by id
+line 73- check if inventory less than 1
+line 74- decrement the inventory
+line 75- save the product to repo
+line 76- return true
+line 78- return false otherwise
+Mainscreen.html
+line 86- add button to table to buy 
+Mainscreencontroller.java
+line 13- import ability to request parameters
+line 56-62- get mapping in controller for the button to decrement inventory if possible
 
 ### G.  Modify the parts to track maximum and minimum inventory by doing the following:
 
