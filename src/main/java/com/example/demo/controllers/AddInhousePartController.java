@@ -39,16 +39,23 @@ public class AddInhousePartController{
     @PostMapping("/showFormAddInPart")
     public String submitForm(@Valid @ModelAttribute("inhousepart") InhousePart part, BindingResult theBindingResult, Model theModel){
         theModel.addAttribute("inhousepart",part);
-        if(theBindingResult.hasErrors()){
-            return "InhousePartForm";
+        if (part.checkInv()){
+            if(theBindingResult.hasErrors()){
+                return "InhousePartForm";
+            }
+            else{
+                InhousePartService repo=context.getBean(InhousePartServiceImpl.class);
+                InhousePart ip=repo.findById((int)part.getId());
+                if(ip!=null)part.setProducts(ip.getProducts());
+                repo.save(part);
+                return "confirmationaddpart";
+            }
         }
         else{
-            InhousePartService repo=context.getBean(InhousePartServiceImpl.class);
-            InhousePart ip=repo.findById((int)part.getId());
-            if(ip!=null)part.setProducts(ip.getProducts());
-            repo.save(part);
+            theBindingResult.rejectValue("inv", "error.inv", "Not an allowed amount of inventory!");
+            return "InhousePartForm";
+        }
+        }
 
-            return "confirmationaddpart";}
-    }
 
 }

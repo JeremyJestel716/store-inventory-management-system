@@ -64,6 +64,35 @@ line 13- import ability to request parameters
 line 56-62- get mapping in controller for the button to decrement inventory if possible
 
 ### G.  Modify the parts to track maximum and minimum inventory by doing the following:
+application.properties
+line 6- changed the name of the data file saved
+Part.java 
+line 32-33- declare min and max variables
+line 42- add min and max to constructor
+line 46-47- initialize min and max
+line 50-51- add min and max to constructor
+line 56-57- initialize min and max
+line 92-106- getters and setters for min and max
+line 108-113- method to check if inventory count is above max or below min
+mainscreen.html
+line 39-40- add column header to table for min and max
+line 49-50- add columns to table for min and max
+inhousepartform.html
+line 24-25- added field to the inhouse part form for min and max inventory
+outsourcedpartform.html
+line 25-26- added field to the outsourced part form for min and max inventory
+bootstrapdata.java
+line 47-48-set min and max for part 1
+line 57-58-set min and max for part 2
+line 66-67-set min and max for part 3
+line 75-76-set min and max for part 4
+line 84-85-set min and max for part 5
+addinhousepartcontroller.java
+line 42- if statement to see if form part inventory number is within the forms min and max
+line 54- else statement to see send error message to page and make user reenter form
+addoutsourcedpartcontroller.java
+line 43- if statement to see if form part inventory number is within the forms min and max
+line 55- else statement to see send error message to page and make user reenter form
 
 ### H.  Add validation for between or at the maximum and minimum fields. The validation must include the following:
 
