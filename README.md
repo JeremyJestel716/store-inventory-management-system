@@ -94,13 +94,17 @@ addoutsourcedpartcontroller.java
 line 43- if statement to see if form part inventory number is within the forms min and max
 line 55- else statement to see send error message to page and make user reenter form
 
-### H.  Add validation for between or at the maximum and minimum fields. The validation must include the following:
-
+### H.  Add validation for between or at the maximum and minimum fields.
+AddProductController.java
+line 19- import set
+line 80- get set of all parts associated with product
+line 81- loop through all parts
+line 82- check if part inventory is less than adjusted product total
+line 83- send error message
+line 84-98- return productform template with associated parts and available parts values correct
 
 ### I.  Add at least two unit tests for the maximum and minimum fields to the PartTest class in the test package.
 
 
 ### J.  Remove the class files for any unused validators in order to clean your code.
 
-
-### K.  Demonstrate professional communication in the content and presentation of your submission.
