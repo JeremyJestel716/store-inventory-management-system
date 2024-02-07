@@ -104,7 +104,11 @@ line 83- send error message
 line 84-98- return productform template with associated parts and available parts values correct
 
 ### I.  Add at least two unit tests for the maximum and minimum fields to the PartTest class in the test package.
-
+PartTest.java
+line 129-136- unit test for get min
+line 137-144- unit test for set min
+line 145-152- unit test for get max
+line 153-160- unit test for set max
 
 ### J.  Remove the class files for any unused validators in order to clean your code.
 

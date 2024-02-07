@@ -126,6 +126,39 @@ class PartTest {
         partOut.setProducts(myProducts);
         assertEquals(myProducts,partOut.getProducts());
     }
+    @Test
+    void getMin() {
+        int min=5;
+        partIn.setMin(min);
+        assertEquals(min,partIn.getMin());
+        partOut.setMin(min);
+        assertEquals(min,partOut.getMin());
+    }
+    @Test
+    void setMin() {
+        int min=5;
+        partIn.setMin(min);
+        assertEquals(min,partIn.getMin());
+        partOut.setMin(min);
+        assertEquals(min,partOut.getMin());
+    }
+    @Test
+    void getMax() {
+        int max=10;
+        partIn.setMax(max);
+        assertEquals(max,partIn.getMax());
+        partOut.setMax(max);
+        assertEquals(max,partOut.getMax());
+    }
+    @Test
+    void setMax() {
+        int max=5;
+        partIn.setMax(max);
+        assertEquals(max,partIn.getMax());
+        partOut.setMax(max);
+        assertEquals(max,partOut.getMax());
+    }
+
 
     @Test
     void testToString() {
