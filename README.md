@@ -111,4 +111,4 @@ line 145-152- unit test for get max
 line 153-160- unit test for set max
 
 ### J.  Remove the class files for any unused validators in order to clean your code.
-
+removed delete part validator class file as it was unused
