@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 /**
  *
@@ -69,11 +70,34 @@ public class AddProductController {
             theModel.addAttribute("assparts",product2.getParts());
             return "productForm";
         }
- //       theModel.addAttribute("assparts", assparts);
- //       this.product=product;
+//       theModel.addAttribute("assparts", assparts);
+//       this.product=product;
 //        product.getParts().addAll(assparts);
         else {
-            ProductService repo = context.getBean(ProductServiceImpl.class);
+          ProductService repo = context.getBean(ProductServiceImpl.class);
+            //Product theProduct = repo.findById((int) product.getId());
+            //theModel.addAttribute("product", product);
+            Set<Part> pa = product1.getParts();
+            for (Part p : pa){
+                if (p.getInv() < product.getInv()){
+                    bindingResult.rejectValue("inv", "error.inv", "Not enough parts in inventory!");
+                    ProductService productService = context.getBean(ProductServiceImpl.class);
+                    Product product2 = new Product();
+                    try {
+                        product2 = productService.findById((int) product.getId());
+                    } catch (Exception e) {
+                        System.out.println("Error Message " + e.getMessage());
+                    }
+                    theModel.addAttribute("parts", partService.findAll());
+                    List<Part>availParts=new ArrayList<>();
+                    for(Part pj: partService.findAll()){
+                        if(!product2.getParts().contains(pj))availParts.add(pj);
+                    }
+                    theModel.addAttribute("availparts",availParts);
+                    theModel.addAttribute("assparts",product2.getParts());
+                    return "productForm";
+                }
+            }
             if(product.getId()!=0) {
                 Product product2 = repo.findById((int) product.getId());
                 PartService partService1 = context.getBean(PartServiceImpl.class);
